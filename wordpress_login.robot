@@ -4,7 +4,7 @@ Library           Selenium2Library
 
 *** Test Cases ***
 Login
-  Open Browser                      http://192.168.1.103:8080/wp-login.php
+  Open Browser                      http://192.168.2.103:8080/wp-login.php
   Maximize Browser Window
   Wait Until Element Is Visible     user_login
   Input Text                        user_login    set
