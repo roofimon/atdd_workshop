@@ -1,31 +1,31 @@
 *** Settings ***
 Library           Selenium2Library
-                  Selenium2Library.Wait
 
 *** Test Cases ***
 Login
-  Open Browser                      http://192.168.2.103:8080/wp-login.php
+  Set Selenium Speed    .1
+  Open Browser                      https://sprint3r1.wordpress.com/wp-login.php
   Maximize Browser Window
   Wait Until Element Is Visible     user_login
-  Input Text                        user_login    set
-  Input password                    pwd     password
+  Input Text                        user_login    sprint3r1
+  Input password                    pwd     WorkingSoftware
   Click Button                      wp-submit
   Page Should Contain               Dashboard
 
 Login With Invalid Username
-  Go To    http://192.168.2.103:8080/wp-login.php
+  Go To    https://sprint3r1.wordpress.com/wp-login.php
   Wait Until Element Is Visible     user_login
   Input Text                        user_login    INVALIDUSER
-  Input password                    pwd     password
+  Input password                    user_pass     password
   Click Button                      wp-submit
-  Page Should Contain               Invalid username. Lost your password?
+  Wait Until Page Contains               ERROR: The password you entered for the email or username invaliduser is incorrect. Lost your password?
 
 
 Login With Invalid Password
-  Go To    http://192.168.2.103:8080/wp-login.php
+  Go To    https://sprint3r1.wordpress.com/wp-login.php
   Wait Until Element Is Visible     user_login
   Input Text                        user_login    set
-  Input password                    pwd     INVALIDPASS
+  Input password                    user_pass     INVALIDPASS
   Click Button                      wp-submit
-  Page Should Contain               The password you entered for the username set is incorrect. Lost your password?
+  Page Should Contain               ERROR: Invalid email or username. Lost your password?
   Close Browser
